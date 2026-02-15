@@ -2,14 +2,104 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Pass Ton Hack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pass Ton Hack | Terminal Central</title>
     <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Hello World</h1>
-    <h2><a href="./docs/noah-thiesset.html">Page de Noah Thiesset</a></h2>
-    <h2><a href="./docs/maxence-goutard.html">Page de Maxence Goutard</a></h2>
-    <a href="./docs/adelin-perlinski.html">Page de Adelin Perlinski</a>
-    <a href="./docs/nathan-alviani.html">Page de Nathan Alviani</a>
+
+<nav class="cyber-nav">
+    <a href="#" class="cyber-nav__brand">PASS_TON_HACK</a>
+    <ul class="cyber-nav__links">
+        <li><a href="#" class="cyber-nav__link">Mainframe</a></li>
+        <li><a href="#" class="cyber-nav__link">Nodes</a></li>
+        <li><a href="#" class="cyber-nav__link">Security</a></li>
+    </ul>
+    <div class="cyber-badge cyber-badge--online cyber-badge--sm">Server_Stable</div>
+</nav>
+
+<header style="padding: var(--space-2xl) var(--space-lg); text-align: center; border-bottom: 1px solid var(--color-border-default);">
+    <h1 style="text-shadow: var(--glow-text-cyan); margin-bottom: var(--space-sm);">Hello World</h1>
+    <p style="color: var(--color-text-secondary); font-family: var(--font-mono); max-width: 700px; margin: 0 auto;">
+        Loptium texte: Accès autorisé au centre de contrôle des opérations.
+        Sélectionnez un profil d'agent pour consulter les archives neurales.
+    </p>
+</header>
+
+<main style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); padding: var(--space-xl) var(--space-lg); max-width: 1400px; margin: 0 auto;">
+
+    <article class="cyber-card cyber-card--interactive cyber-card--holo">
+        <div class="cyber-card__header">
+            <div class="cyber-card__icon">NT</div>
+            <h3 class="cyber-card__title">Noah Thiesset</h3>
+            <span class="cyber-card__badge">Lead_Dev</span>
+        </div>
+        <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-md);">
+            Loptium texte: Intellegitne eam purgante? Mihi enim erit isdem istis fortasse iam utendum.
+        </p>
+        <a href="./docs/noah-thiesset.html" class="cyber-btn cyber-btn--sm" style="text-decoration: none; width: 100%;">Accéder au Profil</a>
+    </article>
+
+    <article class="cyber-card cyber-card--interactive cyber-card--magenta">
+        <div class="cyber-card__header">
+            <div class="cyber-card__icon">MG</div>
+            <h3 class="cyber-card__title">Maxence Goutard</h3>
+            <span class="cyber-card__badge">Security</span>
+        </div>
+        <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-md);">
+            Loptium texte: Hoc etsi multimodis reprehendi potest, tamen accipio, quod dant. Sed residamus.
+        </p>
+        <a href="./docs/maxence-goutard.html" class="cyber-btn cyber-btn--sm cyber-btn--magenta" style="text-decoration: none; width: 100%;">Accéder au Profil</a>
+    </article>
+
+    <article class="cyber-card cyber-card--interactive cyber-card--yellow">
+        <div class="cyber-card__header">
+            <div class="cyber-card__icon">AP</div>
+            <h3 class="cyber-card__title">Adelin Perlinski</h3>
+            <span class="cyber-card__badge">Network</span>
+        </div>
+        <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-md);">
+            Loptium texte: Quid enim tantum praestat mentis excellens perfectio? Atque haec ita sentio.
+        </p>
+        <a href="./docs/adelin-perlinski.html" class="cyber-btn cyber-btn--sm cyber-btn--yellow" style="text-decoration: none; width: 100%;">Accéder au Profil</a>
+    </article>
+
+    <article class="cyber-card cyber-card--interactive cyber-card--green">
+        <div class="cyber-card__header">
+            <div class="cyber-card__icon">NA</div>
+            <h3 class="cyber-card__title">Nathan Alviani</h3>
+            <span class="cyber-card__badge">Bio_Ops</span>
+        </div>
+        <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-md);">
+            Loptium texte: Ergo in gubernando nihil, in officio plurimum interest. Inquit, respondet.
+        </p>
+        <a href="./docs/nathan-alviani.html" class="cyber-btn cyber-btn--sm cyber-btn--green" style="text-decoration: none; width: 100%;">Accéder au Profil</a>
+    </article>
+
+</main>
+
+<section style="padding: var(--space-lg); max-width: 1400px; margin: 0 auto;">
+    <div class="cyber-alert cyber-alert--success">
+        <div class="cyber-alert__title">Status_Report</div>
+        <p>Loptium texte: Tous les systèmes sont opérationnels. Connexion cryptée établie.</p>
+    </div>
+
+    <div class="cyber-field" style="margin-top: var(--space-xl);">
+        <label class="cyber-field__label">Synchronisation Globale</label>
+        <div class="cyber-progress cyber-progress--lg cyber-progress--segmented">
+            <div class="cyber-progress__segment cyber-progress__segment--active"></div>
+            <div class="cyber-progress__segment cyber-progress__segment--active"></div>
+            <div class="cyber-progress__segment cyber-progress__segment--active"></div>
+            <div class="cyber-progress__segment"></div>
+            <div class="cyber-progress__segment"></div>
+        </div>
+    </div>
+</section>
+
+<footer style="margin-top: var(--space-3xl); padding: var(--space-md); text-align: center; border-top: 1px solid var(--color-border-default); font-family: var(--font-mono); font-size: var(--text-xs);">
+    <span style="color: var(--cyber-cyan-500);">ROOT@PASS_TON_HACK:</span> /home/admin/ _
+</footer>
+
 </body>
 </html>
