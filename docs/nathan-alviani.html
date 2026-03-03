@@ -1,10 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problématique 1 - Archive manquante</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Styles complémentaires pour adapter la mise en page */
+        .problematique-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+        }
+        .prob-header {
+            margin-bottom: var(--space-xl);
+            text-align: center;
+        }
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+        }
+        .screenshot-item {
+            text-align: center;
+        }
+        .screenshot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-xs);
+        }
+        .prob-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+        }
+        pre code {
+            display: block;
+            padding: var(--space-sm);
+            background: var(--color-bg-tertiary);
+            border-radius: var(--radius-sm);
+            overflow-x: auto;
+        }
+    </style>
 </head>
-<body>
+<body class="cyber-noise ">
+
+<div class="problematique-container">
+
+    <header class="prob-header">
+        <h1 class="cyber-heading" data-text="PROBLÉMATIQUE 1 - Archive manquante">
+            PROBLÉMATIQUE 1 - Archive manquante
+        </h1>
+    </header>
+    <br>
+    <section class="cyber-card cyber-card--holo">
+        <div class="cyber-card__header">
+
+            <h2 class="cyber-card__title">Énoncé / Descriptif</h2>
+        </div>
+        <p><strong>Contexte :</strong> Les services secrets Velmorasiens indiquent qu'une exfiltration de données a eu lieu sur une base de données contenant des images satellites de surveillance du territoire Poskave. Cette fuite est suivie de très près car elle contient des éléments compromettants.</p>
+        <p><strong>Objectif :</strong> Analyser la différence entre l'image originale et l'image volée pour extraire le message caché.</p>
+    </section>
+    <br>
+    <section class="cyber-card cyber-card--holo">
+        <div class="cyber-card__header">
+            <h2 class="cyber-card__title">Résolution : démarche détaillée</h2>
+        </div>
+
+        <div class="cyber-card cyber-card--interactive" style="margin-bottom: var(--space-md);">
+            <h3>Étape 1 : Analyse des signatures</h3>
+            <p>Vérification de l'intégrité binaire des fichiers : bien que visuellement identiques, les fichiers présentent des signatures numériques différentes.</p>
+        </div>
+
+        <div class="cyber-card cyber-card--interactive" style="margin-bottom: var(--space-md);">
+            <h3>Étape 2 : Comparaison binaire</h3>
+            <p>Utilisation d'un algorithme de comparaison pixel par pixel pour isoler les données additionnelles (stéganographie).</p>
+        </div>
+
+        <div class="cyber-card cyber-card--interactive">
+            <h3>Étape 3 : Extraction du Flag</h3>
+            <p>Récupération du message brut et application d'une substitution (i -> 1) pour obtenir le flag valide final.</p>
+        </div>
+    </section>
+    <br>
+    <section class="cyber-card cyber-card--holo">
+        <div class="cyber-card__header">
+            <h2 class="cyber-card__title">Captures d'écran commentées</h2>
+        </div>
+        <div class="screenshot-grid">
+            <figure class="screenshot-item cyber-card">
+                <img src="/assets/eleves/nathan-alviani/p1_01.jpeg" alt="Analyse initiale">
+                <figcaption class="cyber-text-muted">
+                    <strong>Capture 1 :</strong> Comparaison des fichiers sources (original vs exfiltré) pour confirmer l'altération de la signature.
+                </figcaption>
+            </figure>
+
+            <figure class="screenshot-item cyber-card">
+                <img src="/assets/eleves/nathan-alviani/p1_02.jpeg" alt="Outil de comparaison">
+                <figcaption class="cyber-text-muted">
+                    <strong>Capture 2 :</strong> Utilisation du service Img2Go pour mettre en évidence les pixels modifiés par l'attaquant.
+                </figcaption>
+            </figure>
+
+            <figure class="screenshot-item cyber-card">
+                <img src="/assets/eleves/nathan-alviani/p1_03.jpeg" alt="Résultat final">
+                <figcaption class="cyber-text-muted">
+                    <strong>Capture 3 :</strong> Affichage du résultat brut extrait avant la correction finale du flag.
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+<br>
+    <section><div class="cyber-terminal">
+        <div class="cyber-terminal__header">
+            <span class="cyber-terminal__dot cyber-terminal__dot--red"></span>
+            <span class="cyber-terminal__dot cyber-terminal__dot--yellow"></span>
+            <span class="cyber-terminal__dot cyber-terminal__dot--green"></span>
+
+            <span class="cyber-terminal__title">info.exe</span>
+            </div>
+        <div class="cyber-terminal__body">
+            <span class="cyber-terminal__prompt">$</span> Outil de comparaison d'images utilisé
+            <br>
+            <span class="cyber-terminal__prompt">>>></span> https://www.img2go.com/fr/result#j=f8152f0b-fa4e-4603-8700-0d2e99ad5796
+            <br>
+            <span class="cyber-terminal__cursor"></span>
+        </div>
+        </div>
+    </section>
+<br>
+    <div class="prob-grid">
+        <section class="cyber-card cyber-card--magenta">
+            <div class="cyber-card__header">
+                <h2 class="cyber-card__title">Difficulté(s) rencontrée(s)</h2>
+            </div>
+            <p>La difficulté majeure a été de trouver un outil capable d'isoler précisément les changements de pixels sans dénaturer l'image originale.</p>
+        </section>
+
+        <section class="cyber-card cyber-card--green">
+            <div class="cyber-card__header">
+                <h2 class="cyber-card__title">Ce que j'ai appris</h2>
+            </div>
+            <ul class="cyber-text-secondary">
+                <li>Vérifier l'intégrité d'un fichier via sa signature.</li>
+                <li>Comprendre les principes de la stéganographie visuelle.</li>
+                <li>Appliquer un post-traitement (substitution) sur un flag brut.</li>
+            </ul>
+        </section>
+    </div>
+    <br>
+    <section class="cyber-card cyber-card--yellow">
+        <div class="cyber-card__header">
+            <h2 class="cyber-card__title">Grand Oral : ce que je peux réutiliser</h2>
+        </div>
+        <p>Cet exercice permet d'illustrer les méthodes d'exfiltration de données lors de conflits cyber-géopolitiques entre deux puissances.</p>
+    </section>
+
+</div>
 
 </body>
 </html>
