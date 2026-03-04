@@ -1,10 +1,987 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Noah Thiesset</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio – Adelin Perlinski | Passe Ton Hack D'Abord 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=Exo+2:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+        /* ─── Page Layout ─────────────────────────────── */
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-lg) var(--space-md);
+        }
+
+        /* ─── Hero Header ─────────────────────────────── */
+        .hero {
+            position: relative;
+            padding: var(--space-3xl) var(--space-xl);
+            margin-bottom: var(--space-2xl);
+            border: 1px solid var(--color-border-default);
+            background: var(--color-bg-secondary);
+            overflow: hidden;
+            text-align: center;
+            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 40%, color-mix(in srgb, var(--cyber-cyan-500) 8%, transparent), transparent);
+            pointer-events: none;
+        }
+        .hero-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--cyber-magenta-500);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+        }
+        .hero-name {
+            font-family: "Orbitron", var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cyber-cyan-500);
+            text-shadow: var(--glow-text-cyan);
+            margin-bottom: var(--space-xs);
+        }
+        .hero-subtitle {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            color: var(--cyber-chrome-300);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .hero-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--cyber-cyan-500);
+        }
+        .hero-corner--tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .hero-corner--tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+        .hero-corner--bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+        .hero-corner--br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+        /* ─── Challenge Cards ─────────────────────────── */
+        .challenge {
+            margin-bottom: var(--space-2xl);
+            border: 1px solid var(--color-border-default);
+            background: var(--color-bg-secondary);
+            position: relative;
+        }
+        .challenge::before, .challenge::after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--cyber-cyan-500);
+            pointer-events: none;
+        }
+        .challenge::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .challenge::after  { bottom: -1px; right: -1px; border-top: none; border-left: none; }
+
+        .challenge--magenta::before,
+        .challenge--magenta::after { border-color: var(--cyber-magenta-500); }
+        .challenge--yellow::before,
+        .challenge--yellow::after  { border-color: var(--cyber-yellow-500); }
+        .challenge--green::before,
+        .challenge--green::after   { border-color: var(--cyber-green-500); }
+
+        /* Challenge title banner */
+        .challenge-header {
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--color-border-default);
+            background: var(--color-bg-tertiary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        .challenge-number {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            padding: var(--space-3xs) var(--space-sm);
+            border: 1px solid;
+            color: var(--cyber-cyan-500);
+            border-color: var(--cyber-cyan-500);
+            background: color-mix(in srgb, var(--cyber-cyan-500) 15%, transparent);
+            white-space: nowrap;
+        }
+        .challenge--magenta .challenge-number { color: var(--cyber-magenta-500); border-color: var(--cyber-magenta-500); background: color-mix(in srgb, var(--cyber-magenta-500) 15%, transparent); }
+        .challenge--yellow  .challenge-number { color: var(--cyber-yellow-500);  border-color: var(--cyber-yellow-500);  background: color-mix(in srgb, var(--cyber-yellow-500)  15%, transparent); }
+        .challenge--green   .challenge-number { color: var(--cyber-green-500);   border-color: var(--cyber-green-500);   background: color-mix(in srgb, var(--cyber-green-500)   15%, transparent); }
+
+        .challenge-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--cyber-cyan-500);
+            text-shadow: var(--glow-text-cyan);
+            flex: 1;
+        }
+        .challenge--magenta .challenge-title { color: var(--cyber-magenta-500); text-shadow: none; }
+        .challenge--yellow  .challenge-title { color: var(--cyber-yellow-500);  text-shadow: none; }
+        .challenge--green   .challenge-title { color: var(--cyber-green-500);   text-shadow: none; }
+
+        .challenge-type {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .challenge-body {
+            padding: var(--space-lg);
+        }
+
+        /* ─── Sections inside challenge ──────────────── */
+        .section {
+            margin-bottom: var(--space-lg);
+        }
+        .section-label {
+            font-family: var(--font-display);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cyber-cyan-500);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        .section-label::before {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 2px;
+            background: var(--cyber-cyan-500);
+        }
+        .challenge--magenta .section-label { color: var(--cyber-magenta-500); }
+        .challenge--magenta .section-label::before { background: var(--cyber-magenta-500); }
+        .challenge--yellow  .section-label { color: var(--cyber-yellow-500); }
+        .challenge--yellow  .section-label::before { background: var(--cyber-yellow-500); }
+        .challenge--green   .section-label { color: var(--cyber-green-500); }
+        .challenge--green   .section-label::before { background: var(--cyber-green-500); }
+
+        .section-content {
+            color: var(--color-text-secondary);
+            font-size: var(--text-base);
+            line-height: 1.7;
+        }
+        .section-content strong {
+            color: var(--color-text-primary);
+        }
+
+        /* ─── Enoncé box ──────────────────────────────── */
+        .enonce-box {
+            border: 1px solid var(--color-border-default);
+            border-left: 3px solid var(--cyber-cyan-500);
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md) var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        .challenge--magenta .enonce-box { border-left-color: var(--cyber-magenta-500); }
+        .challenge--yellow  .enonce-box { border-left-color: var(--cyber-yellow-500); }
+        .challenge--green   .enonce-box { border-left-color: var(--cyber-green-500); }
+
+        .enonce-box p { margin-bottom: var(--space-xs); color: var(--color-text-secondary); }
+        .enonce-box p:last-child { margin-bottom: 0; }
+
+        .flag-format {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            padding: var(--space-3xs) var(--space-xs);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border-default);
+            color: var(--cyber-yellow-500);
+            margin-top: var(--space-xs);
+        }
+
+        /* ─── Steps ───────────────────────────────────── */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        .step {
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: var(--space-sm);
+            align-items: start;
+        }
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--cyber-cyan-500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--cyber-cyan-500);
+            flex-shrink: 0;
+            background: color-mix(in srgb, var(--cyber-cyan-500) 10%, transparent);
+        }
+        .challenge--magenta .step-num { border-color: var(--cyber-magenta-500); color: var(--cyber-magenta-500); background: color-mix(in srgb, var(--cyber-magenta-500) 10%, transparent); }
+        .challenge--yellow  .step-num { border-color: var(--cyber-yellow-500);  color: var(--cyber-yellow-500);  background: color-mix(in srgb, var(--cyber-yellow-500)  10%, transparent); }
+        .challenge--green   .step-num { border-color: var(--cyber-green-500);   color: var(--cyber-green-500);   background: color-mix(in srgb, var(--cyber-green-500)   10%, transparent); }
+
+        .step-content {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            padding-top: 6px;
+        }
+
+        /* ─── Answer Flag ─────────────────────────────── */
+        .flag-result {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-md);
+            border: 2px solid var(--cyber-green-500);
+            background: color-mix(in srgb, var(--cyber-green-500) 12%, transparent);
+            font-family: var(--font-mono);
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: var(--cyber-green-500);
+            box-shadow: 0 0 15px color-mix(in srgb, var(--cyber-green-500) 30%, transparent);
+            margin-top: var(--space-sm);
+        }
+        .flag-result::before {
+            content: "✓";
+            font-family: var(--font-display);
+        }
+
+        /* ─── Two-column layout for diff/learned ─────── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+        @media (max-width: 640px) {
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        .info-box {
+            padding: var(--space-md);
+            border: 1px solid var(--color-border-default);
+            background: var(--color-bg-tertiary);
+        }
+        .info-box-label {
+            font-family: var(--font-display);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+        }
+        .info-box-label--magenta { color: var(--cyber-magenta-500); }
+        .info-box-label--green   { color: var(--cyber-green-500); }
+        .info-box-label--yellow  { color: var(--cyber-yellow-500); }
+        .info-box-label--cyan    { color: var(--cyber-cyan-500); }
+
+        .info-box ul {
+            padding-left: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2xs);
+        }
+        .info-box ul li {
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+            padding-left: var(--space-md);
+            position: relative;
+        }
+        .info-box ul li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--cyber-cyan-500);
+        }
+        .info-box p {
+            color: var(--color-text-secondary);
+            font-size: var(--text-sm);
+            line-height: 1.6;
+        }
+
+        /* ─── Screenshot gallery ──────────────────────── */
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: var(--space-sm);
+            margin-top: var(--space-sm);
+        }
+        .screenshot {
+            border: 1px solid var(--color-border-default);
+            overflow: hidden;
+            background: var(--color-bg-tertiary);
+        }
+        .screenshot img {
+            width: 100%;
+            display: block;
+            opacity: 0.9;
+            transition: opacity var(--duration-normal);
+        }
+        .screenshot:hover img { opacity: 1; }
+        .screenshot-caption {
+            padding: var(--space-2xs) var(--space-xs);
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            border-top: 1px solid var(--color-border-default);
+        }
+
+        /* ─── Single full-width screenshot ───────────── */
+        .screenshot-full {
+            border: 1px solid var(--color-border-default);
+            overflow: hidden;
+            background: var(--color-bg-tertiary);
+            margin-top: var(--space-sm);
+        }
+        .screenshot-full img {
+            width: 100%;
+            display: block;
+            opacity: 0.9;
+        }
+        .screenshot-full:hover img { opacity: 1; }
+
+        /* ─── Tool tag ────────────────────────────────── */
+        .tool-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            margin-top: var(--space-xs);
+        }
+        .tool-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-3xs) var(--space-sm);
+            border: 1px solid var(--cyber-cyan-500);
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--cyber-cyan-500);
+            background: color-mix(in srgb, var(--cyber-cyan-500) 10%, transparent);
+            letter-spacing: 0.05em;
+        }
+        .tool-tag a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .tool-tag a:hover { text-decoration: underline; }
+
+        /* ─── Divider ─────────────────────────────────── */
+        .cyber-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyber-cyan-500), transparent);
+            margin: var(--space-lg) 0;
+            opacity: 0.4;
+        }
+
+        /* ─── Footer ──────────────────────────────────── */
+        .footer {
+            text-align: center;
+            padding: var(--space-xl) 0 var(--space-lg);
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            letter-spacing: 0.08em;
+        }
+        .footer span { color: var(--cyber-cyan-500); }
+
+        /* ─── Nav bar ─────────────────────────────────── */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-sm) var(--space-lg);
+            border-bottom: 1px solid var(--color-border-default);
+            background: color-mix(in srgb, var(--color-bg-secondary) 90%, transparent);
+            backdrop-filter: blur(12px);
+            flex-wrap: wrap;
+        }
+        .nav-brand {
+            font-family: "Orbitron", var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: var(--cyber-cyan-500);
+            text-shadow: var(--glow-text-cyan);
+            text-transform: uppercase;
+        }
+        .nav-brand::before {
+            content: "// ";
+            color: var(--cyber-magenta-500);
+        }
+        .nav-links {
+            display: flex;
+            gap: var(--space-xs);
+            list-style: none;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+        .nav-links a {
+            font-family: var(--font-display);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--color-text-muted);
+            padding: var(--space-3xs) var(--space-xs);
+            border: 1px solid transparent;
+            transition: color var(--duration-fast), border-color var(--duration-fast);
+        }
+        .nav-links a:hover {
+            color: var(--cyber-cyan-500);
+            border-color: var(--cyber-cyan-500);
+        }
+    </style>
 </head>
-<body>
+<body class="cyber-noise">
+
+<!-- NAV -->
+<nav class="top-nav">
+    <span class="nav-brand">Adelin Perlinski</span>
+    <ul class="nav-links">
+        <li><a href="#challenge-1">Challenge 1</a></li>
+        <li><a href="#challenge-2">Challenge 2</a></li>
+        <li><a href="#challenge-3">Challenge 3</a></li>
+        <li><a href="#challenge-4">Challenge 4</a></li>
+        <li><a href="#challenge-5">Challenge 5</a></li>
+        <li><a href="#challenge-6">Challenge 6</a></li>
+    </ul>
+</nav>
+
+<div class="page-wrapper">
+
+    <!-- HERO -->
+    <header class="hero cyber-boot">
+        <div class="hero-corner hero-corner--tl"></div>
+        <div class="hero-corner hero-corner--tr"></div>
+        <div class="hero-corner hero-corner--bl"></div>
+        <div class="hero-corner hero-corner--br"></div>
+        <p class="hero-tag">Portfolio · Passe Ton Hack D'Abord 2026</p>
+        <h1 class="hero-name cyber-heading" data-text="Adelin Perlinski">Adelin Perlinski</h1>
+        <p class="hero-subtitle">Cybersécurité &amp; CTF Write-ups</p>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════
+         CHALLENGE 1 – Petite Sieste Partie 1
+    ════════════════════════════════════════════════ -->
+    <article class="challenge" id="challenge-1">
+        <div class="challenge-header">
+            <span class="challenge-number">CHALLENGE #1</span>
+            <h2 class="challenge-title">Petite Sieste — Partie 1</h2>
+            <span class="challenge-type">Stéganographie / PowerShell</span>
+        </div>
+        <div class="challenge-body">
+
+            <!-- Énoncé -->
+            <div class="section">
+                <p class="section-label">Énoncé</p>
+                <div class="enonce-box">
+                    <p>Une série de cyberattaques ciblées a frappé les infrastructures numériques de la <strong>Velmorasie</strong>. Des hôpitaux et des réseaux électriques sont touchés par des interruptions causées par un <strong>rançongiciel</strong> sophistiqué.</p>
+                    <p>Le rançongiciel se propage sur les systèmes de plus en plus vite. Il faut comprendre son mode de propagation pour le bloquer !</p>
+                    <p>Les membres du <strong>CNC (Centre National de Cyberdéfense)</strong> vous ont mandaté pour analyser un script PowerShell suspect trouvé sur plusieurs machines. Il a été enregistré au format texte (.txt). Vous devez l'analyser de manière <strong>statique</strong> (ne pas exécuter le script) et retrouver le nom initial de l'exécutable malveillant.</p>
+                    <span class="flag-format">FLAG{nom_du_binaire.son_extension} — en minuscules</span>
+                </div>
+            </div>
+
+            <!-- Screenshots du script -->
+            <div class="section">
+                <p class="section-label">Analyse du script</p>
+                <div class="screenshot-full">
+                    <img src="/assets/eleves/adelin-perlinski/p1_01.png" alt="Script PowerShell obfusqué" />
+                    <p class="screenshot-caption">Script PowerShell complet — nombreuses chaînes Base64 visibles</p>
+                </div>
+            </div>
+
+            <!-- Résolution -->
+            <div class="section">
+                <p class="section-label">Démarche de résolution</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div class="step-content">
+                            <strong>Lecture initiale du bloc de texte.</strong> On remarque immédiatement de nombreuses occurrences de <code>:UTF8.GetString([System.Convert]::FromBase64String(...))</code> — du code encodé en Base64, c'est la piste à suivre.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div class="step-content">
+                            <strong>Décodage Base64.</strong> On utilise <a href="https://www.base64decode.org/" target="_blank" style="color:var(--cyber-cyan-500)">base64decode.org</a> pour décoder les chaînes une à une. En décodant la quasi-totalité, on obtient le chemin complet :<br/>
+                            <code>/Documents/Documentation/Directory/HKLM:\SYSTEM\\CurrentControlSet\\Control\\CrashControl/CrashDumpEnabled/<strong>Backstab64.exe</strong>/Guide_Utilisateur_v03.pdf.exe</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flag-result">FLAG{backstab64.exe}</div>
+
+            <div class="cyber-divider"></div>
+            <div class="two-col">
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--magenta">Difficulté rencontrée</p>
+                    <p>Comprendre qu'il fallait décoder le contenu et non simplement lire la commande visible en bas du script.</p>
+                </div>
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--green">Ce que j'ai appris</p>
+                    <ul>
+                        <li>Identifier de l'encodage Base64 dans un script PowerShell.</li>
+                        <li>Analyser statiquement un script malveillant sans l'exécuter.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top:var(--space-md)">
+                <p class="section-label">Outil utilisé</p>
+                <div class="tool-list">
+                    <span class="tool-tag"><a href="https://www.base64decode.org/" target="_blank">base64decode.org</a></span>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════════
+         CHALLENGE 2 – Expressionnisme (Regex)
+    ════════════════════════════════════════════════ -->
+    <article class="challenge challenge--magenta" id="challenge-2">
+        <div class="challenge-header">
+            <span class="challenge-number">CHALLENGE #2</span>
+            <h2 class="challenge-title">Expressionnisme</h2>
+            <span class="challenge-type">Regex</span>
+        </div>
+        <div class="challenge-body">
+
+            <div class="section">
+                <p class="section-label">Énoncé</p>
+                <div class="enonce-box">
+                    <p>Les services secrets Velmorasiens vous transmettent cette chaîne de caractères énigmatique :</p>
+                    <p><code>^FLAG\{1Z[i|i]_(R3){1}gE(x)\}$</code></p>
+                    <p>Une réponse semble attendue de votre part.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <p class="section-label">Démarche de résolution</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div class="step-content">
+                            <strong>Comprendre le format.</strong> La chaîne commence par <code>^</code> et se termine par <code>$</code>. Une recherche rapide indique qu'il s'agit d'une expression régulière (<strong>regex</strong>) — les ancres début et fin de chaîne.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div class="step-content">
+                            <strong>Ce n'est pas à décoder, mais à épurer.</strong> L'expression n'est pas valide en tant que regex stricte. L'objectif est d'en <strong>retirer les éléments syntaxiques regex</strong> pour révéler le flag brut.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">03</div>
+                        <div class="step-content">
+                            <strong>Application des règles regex.</strong> En utilisant le calculateur de regex, on identifie et supprime les opérateurs : <code>^</code>, <code>$</code>, <code>[…]</code>, <code>{1}</code>, <code>(…)</code> — ne conservant que les caractères littéraux.
+                        </div>
+                    </div>
+                </div>
+                <div class="screenshots" style="margin-top:var(--space-md)">
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p2_01.png" alt="Recherche DuckDuckGo — ancres regex" />
+                        <p class="screenshot-caption">Identification du format regex via recherche</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p2_02.png" alt="Explication des ancres ^ et $" />
+                        <p class="screenshot-caption">Ancres ^ et $ expliquées</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p2_03.png" alt="Table des règles regex" />
+                        <p class="screenshot-caption">Table de référence regex utilisée</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flag-result">FLAG{1Zi_R3gEx}</div>
+
+            <div class="cyber-divider"></div>
+            <div class="two-col">
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--magenta">Difficulté rencontrée</p>
+                    <p>Comprendre que le but n'était pas de <em>faire fonctionner</em> la regex, mais d'en ôter la syntaxe pour lire le flag. Plus difficile à conceptualiser que le décodage Base64.</p>
+                </div>
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--green">Ce que j'ai appris</p>
+                    <ul>
+                        <li>L'existence et la syntaxe des expressions régulières.</li>
+                        <li>La signification des ancres <code>^</code> et <code>$</code>.</li>
+                        <li>La différence entre caractères littéraux et opérateurs regex.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top:var(--space-md)">
+                <p class="section-label">Outil utilisé</p>
+                <div class="tool-list">
+                    <span class="tool-tag"><a href="https://fr.infobyip.com/regularexpressioncalculator.php" target="_blank">infobyip.com — Regex Calculator</a></span>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════════
+         CHALLENGE 3 – Petite Sieste Partie 2
+    ════════════════════════════════════════════════ -->
+    <article class="challenge challenge--yellow" id="challenge-3">
+        <div class="challenge-header">
+            <span class="challenge-number">CHALLENGE #3</span>
+            <h2 class="challenge-title">Petite Sieste — Partie 2</h2>
+            <span class="challenge-type">Analyse Statique</span>
+        </div>
+        <div class="challenge-body">
+
+            <div class="section">
+                <p class="section-label">Énoncé</p>
+                <div class="enonce-box">
+                    <p>Bravo ! Vous avez trouvé la source du programme malveillant. Les équipes du CNC ont commencé à déployer des correctifs d'urgence.</p>
+                    <p>Ils ont cependant toujours besoin de vos services pour continuer l'investigation et trouver <strong>l'objectif réel</strong> de ce rançongiciel.</p>
+                    <p>Maintenant que vous avez récupéré le nom du binaire malveillant, pourriez-vous identifier <strong>quel processus est ciblé</strong> ?</p>
+                    <span class="flag-format">FLAG{nom_de_l_outil_en_minuscule}</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <p class="section-label">Démarche de résolution</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div class="step-content">
+                            <strong>Lire la bonne ligne.</strong> La réponse était directement visible dans le script sans décodage. La ligne :<br/>
+                            <code>./Guide_Utilisateur_v03.pdf.exe -n MsMpEng.exe -k Start-Sleep -Seconds 8</code><br/>
+                            montre que le virus cible <strong>MsMpEng.exe</strong> et le force à dormir en boucle.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div class="step-content">
+                            <strong>Identifier le processus.</strong> Une recherche Google confirme que <strong>MsMpEng.exe</strong> est l'ancien processus de l'antivirus Windows Defender. L'objectif du rançongiciel est donc de désactiver la protection antivirus pour créer une brèche.
+                        </div>
+                    </div>
+                </div>
+                <div class="screenshots" style="margin-top:var(--space-md)">
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p3_01.png" alt="Ligne de commande ciblant MsMpEng.exe" />
+                        <p class="screenshot-caption">Ligne visible dans le script : cible MsMpEng.exe</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p3_02.png" alt="Zoom sur la ligne suspecte" />
+                        <p class="screenshot-caption">Zoom sur la commande Start-Sleep</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flag-result">FLAG{msmpeng}</div>
+
+            <div class="cyber-divider"></div>
+            <div class="two-col">
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--magenta">Difficulté rencontrée</p>
+                    <p>J'ai perdu du temps à continuer de chercher dans les chaînes Base64, alors que la réponse était sous mes yeux. Il fallait bien lire l'énoncé.</p>
+                </div>
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--green">Ce que j'ai appris</p>
+                    <ul>
+                        <li>L'importance de lire attentivement l'énoncé avant de foncer.</li>
+                        <li>Le rôle de <code>MsMpEng.exe</code> dans Windows Defender.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════════
+         CHALLENGE 4 – Survivant Crescendo
+    ════════════════════════════════════════════════ -->
+    <article class="challenge challenge--green" id="challenge-4">
+        <div class="challenge-header">
+            <span class="challenge-number">CHALLENGE #4</span>
+            <h2 class="challenge-title">Survivant Crescendo</h2>
+            <span class="challenge-type">Détournement de jeu</span>
+        </div>
+        <div class="challenge-body">
+
+            <div class="section">
+                <p class="section-label">Énoncé</p>
+                <div class="enonce-box">
+                    <p>Lors d'une mission d'infiltration dans un groupe Poskavien, vous apprenez que tous les membres jouent au dernier jeu à la mode : <strong>Survivant Crescendo</strong>. Personne n'a jamais réussi à finir ce jeu normalement.</p>
+                    <p>Prouver que vous avez battu le boss final pourrait améliorer votre réputation au sein du groupe. Pour parfaire votre couverture, vous allez devoir finir le jeu en utilisant <strong>tous les moyens nécessaires</strong>.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <p class="section-label">Démarche de résolution</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div class="step-content">
+                            <strong>Explorer la console du navigateur.</strong> Sans connaissance de JavaScript, je commence par ce que je maîtrise : la console. En tapant <code>g</code>, puis <code>game.</code>, l'autocomplétion propose des méthodes disponibles. <code>game.apply_upgrade</code> est particulièrement intéressante — mais elle nécessite une clé d'upgrade.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div class="step-content">
+                            <strong>Chercher les clés dans le code source.</strong> Dans la section <code>UPGRADES</code> du code, on trouve les clés disponibles : <code>moveSpeed</code>, <code>maxHealth</code>, <code>bassDrop</code>, etc. Ces valeurs peuvent être passées en argument à <code>game.apply_upgrade()</code>.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">03</div>
+                        <div class="step-content">
+                            <strong>Devenir invincible.</strong> On utilise la console pour appliquer des valeurs extrêmes : <code>game.apply_upgrade("maxHealth", 69)</code> et <code>game.apply_upgrade("bassDrop", 2000000)</code>. On joue ensuite normalement jusqu'à la victoire.
+                        </div>
+                    </div>
+                </div>
+                <div class="screenshots" style="margin-top:var(--space-md)">
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p4_01.png" alt="Console avec les méthodes game disponibles" />
+                        <p class="screenshot-caption">Autocomplétion console — game.apply_upgrade</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p4_02.png" alt="Code source des upgrades" />
+                        <p class="screenshot-caption">Section UPGRADES dans le code source</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p4_03.png" alt="Commandes apply_upgrade dans la console" />
+                        <p class="screenshot-caption">Commandes utilisées dans la console</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p4_04.png" alt="Écran de victoire avec le flag" />
+                        <p class="screenshot-caption">Écran de victoire — flag récupéré</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flag-result">FLAG{V@-pireS_W3re_t00_ez}</div>
+
+            <div class="cyber-divider"></div>
+            <div class="two-col">
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--magenta">Difficulté rencontrée</p>
+                    <p>Ne pas connaître JavaScript — mais utiliser la console du navigateur comme point d'entrée a permis de contourner ce manque.</p>
+                </div>
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--green">Ce que j'ai appris</p>
+                    <ul>
+                        <li>Utiliser la console développeur pour interagir avec un jeu web.</li>
+                        <li>Fouiller dans le code source JavaScript pour trouver des clés.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top:var(--space-md)">
+                <p class="section-label">Outil utilisé</p>
+                <div class="tool-list">
+                    <span class="tool-tag">Console développeur (F12)</span>
+                    <span class="tool-tag">Fichiers fournis dans la consigne</span>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════════
+         CHALLENGE 5 – La Traque Partie 1
+    ════════════════════════════════════════════════ -->
+    <article class="challenge" id="challenge-5">
+        <div class="challenge-header">
+            <span class="challenge-number">CHALLENGE #5</span>
+            <h2 class="challenge-title">La Traque — Partie 1</h2>
+            <span class="challenge-type">OSINT</span>
+        </div>
+        <div class="challenge-body">
+
+            <div class="section">
+                <p class="section-label">Énoncé</p>
+                <div class="enonce-box">
+                    <p>Un membre du groupe cyberactiviste Poskave vient de publier une vidéo qu'il a lui-même filmée sur ses réseaux sociaux. Les services de renseignements Velmorasiens vous ont mandaté pour récupérer des informations liées à son dernier vol.</p>
+                    <p>Trouvez :<br/>
+                        &nbsp;&nbsp;● Le <strong>trigramme de l'aéroport de départ</strong><br/>
+                        &nbsp;&nbsp;● Le <strong>numéro de la piste</strong>
+                    </p>
+                    <span class="flag-format">FLAG{CDG:54} — tout en majuscules, sans espaces</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <p class="section-label">Démarche de résolution</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div class="step-content">
+                            <strong>Identifier l'aéroport.</strong> On prend une capture de la vidéo montrant à la fois la piste et le paysage environnant. Une recherche inversée via <strong>Google Lens</strong> identifie immédiatement le <strong>Harry Reid International Airport</strong> (Las Vegas). Trigramme : <strong>LAS</strong>.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div class="step-content">
+                            <strong>Identifier la piste.</strong> On récupère le diagramme officiel de l'aéroport LAS. D'après l'angle et la position visible dans la vidéo, l'avion se trouve sur la piste la plus basse, en direction de départ : <strong>piste 26L</strong>.
+                        </div>
+                    </div>
+                </div>
+                <div class="screenshots" style="margin-top:var(--space-md)">
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p5_01.png" alt="Photo de la vidéo depuis l'avion" />
+                        <p class="screenshot-caption">Capture de la vidéo — pistes et skyline visibles</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p5_02.png" alt="Google Lens résultats — Harry Reid Airport" />
+                        <p class="screenshot-caption">Google Lens identifie Harry Reid International (LAS)</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p5_03.png" alt="Diagramme officiel des pistes LAS" />
+                        <p class="screenshot-caption">Diagramme des pistes — LAS</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="p5_04.png" alt="Zoom piste 26L" />
+                        <p class="screenshot-caption">Zoom — piste 26L identifiée</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flag-result">FLAG{LAS:26L}</div>
+
+            <div class="cyber-divider"></div>
+            <div class="two-col">
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--magenta">Difficulté rencontrée</p>
+                    <p>Identifier l'aéroport depuis une image de vidéo, et comprendre le système de numérotation des pistes d'aviation.</p>
+                </div>
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--green">Ce que j'ai appris</p>
+                    <ul>
+                        <li>Utiliser Google Lens pour la reconnaissance de lieux.</li>
+                        <li>Comprendre le fonctionnement des trigrammes IATA.</li>
+                        <li>Lire un diagramme de pistes d'aéroport.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top:var(--space-md)">
+                <p class="section-label">Outil utilisé</p>
+                <div class="tool-list">
+                    <span class="tool-tag">Google Lens</span>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- ═══════════════════════════════════════════════
+         CHALLENGE 6 – La Traque Partie 2
+    ════════════════════════════════════════════════ -->
+    <article class="challenge challenge--magenta" id="challenge-6">
+        <div class="challenge-header">
+            <span class="challenge-number">CHALLENGE #6</span>
+            <h2 class="challenge-title">La Traque — Partie 2</h2>
+            <span class="challenge-type">OSINT</span>
+        </div>
+        <div class="challenge-body">
+
+            <div class="section">
+                <p class="section-label">Énoncé</p>
+                <div class="enonce-box">
+                    <p>Le cyberactiviste Poskave publie une nouvelle photo depuis un <strong>Airbus A321Neo</strong>. Il faut trouver :</p>
+                    <p>
+                        &nbsp;&nbsp;● Le <strong>trigramme de l'aéroport de destination</strong><br/>
+                        &nbsp;&nbsp;● Le <strong>numéro de siège</strong> du cyberactiviste
+                    </p>
+                    <span class="flag-format">FLAG{CDG:21D} — tout en majuscules, sans espaces</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <p class="section-label">Démarche de résolution</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <div class="step-content">
+                            <strong>Trouver le siège.</strong> En comparant l'angle de vue de la photo avec le plan de cabine d'un A321Neo, on détermine que le photographe se trouve à la <strong>rangée 11</strong>, côté fenêtre droite. Sur ce type d'avion, la fenêtre droite correspond à la colonne <strong>F</strong>. Siège : <strong>11F</strong>.
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <div class="step-content">
+                            <strong>Trouver la destination.</strong> La photo montre le mont <strong>Irish</strong> (sud du Nevada). L'avion est orienté vers le <strong>nord-nord-est</strong> (cap ~30°). En traçant cette trajectoire sur une carte de FlightRadar24 depuis LAS, l'aéroport correspondant est <strong>Salt Lake City (SLC)</strong>.
+                        </div>
+                    </div>
+                </div>
+                <div class="screenshots" style="margin-top:var(--space-md)">
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p6_01.png" alt="Plan de cabine A321Neo" />
+                        <p class="screenshot-caption">Plan de cabine A321Neo — rangée 11</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p6_02.png" alt="FlightRadar cap 30° avec Mt. Irish" />
+                        <p class="screenshot-caption">Cap 30° — Mt. Irish repéré sur FlightRadar</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="/assets/eleves/adelin-perlinski/p6_03.png" alt="Carte trajectoire LAS → SLC" />
+                        <p class="screenshot-caption">Trajectoire LAS → SLC confirmée</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flag-result">FLAG{SLC:11F}</div>
+
+            <div class="cyber-divider"></div>
+            <div class="two-col">
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--magenta">Difficulté rencontrée</p>
+                    <p>Identifier l'aéroport de destination — une rangée de trois aéroports alignés à ~27° a d'abord prêté à confusion.</p>
+                </div>
+                <div class="info-box">
+                    <p class="info-box-label info-box-label--green">Ce que j'ai appris</p>
+                    <ul>
+                        <li>Lire un plan de cabine d'avion pour identifier un siège.</li>
+                        <li>Utiliser FlightRadar24 pour suivre des trajectoires.</li>
+                        <li>Croiser des points de repère géographiques pour localiser un vol.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top:var(--space-md)">
+                <p class="section-label">Outil utilisé</p>
+                <div class="tool-list">
+                    <span class="tool-tag"><a href="https://www.flightradar24.com/" target="_blank">FlightRadar24</a></span>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+</div><!-- /page-wrapper -->
+
+<footer class="footer">
+    <span>Adelin Perlinski</span> · Portfolio CTF · Passe Ton Hack D'Abord <span>2026</span>
+</footer>
 
 </body>
 </html>
