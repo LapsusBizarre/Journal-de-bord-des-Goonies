@@ -1,10 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>4-D Sécure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Effets cyberpunk supplémentaires */
+        .cyber-body {
+            background-color: var(--cyber-void-500);
+            color: var(--cyber-chrome-100);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            padding: var(--space-lg);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .cyber-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cyber-hero {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            position: relative;
+        }
+
+        .cyber-title {
+            font-family: var(--font-display);
+            font-size: var(--text-5xl);
+            color: var(--cyber-cyan-500);
+            text-shadow: var(--glow-text-cyan);
+            margin-bottom: var(--space-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .cyber-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyber-cyan-500), var(--cyber-magenta-500));
+            border-radius: var(--radius-full);
+        }
+
+        .cyber-badge--pulse {
+            animation: cyber-glow-pulse 2s ease-in-out infinite;
+        }
+
+        .cyber-card {
+            margin-bottom: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card__header {
+            border-bottom: 1px solid var(--color-border-default);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .cyber-card__icon {
+            background: color-mix(in srgb, var(--cyber-cyan-500) 20%, transparent);
+            border-color: var(--cyber-cyan-500);
+        }
+
+        .cyber-card--holo {
+            background: linear-gradient(135deg,
+            var(--color-bg-secondary) 0%,
+            color-mix(in srgb, var(--cyber-cyan-500) 5%, var(--color-bg-secondary)) 25%,
+            color-mix(in srgb, var(--cyber-magenta-500) 5%, var(--color-bg-secondary)) 50%,
+            color-mix(in srgb, var(--cyber-green-500) 5%, var(--color-bg-secondary)) 75%,
+            var(--color-bg-secondary) 100%);
+            background-size: 400% 400%;
+            animation: holo-shift 8s ease infinite;
+        }
+
+        .cyber-card--green {
+            --card-accent: var(--cyber-green-500);
+        }
+
+        .cyber-card--interactive {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cyber-card--interactive:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px color-mix(in srgb, var(--cyber-green-500) 30%, transparent);
+        }
+
+        .cyber-btn {
+            display: inline-block;
+            margin: var(--space-md) 0;
+        }
+
+        .cyber-image-wrapper {
+            margin: var(--space-md) 0;
+            text-align: center;
+            border: 1px solid var(--color-border-default);
+            border-radius: var(--radius-md);
+            padding: var(--space-sm);
+            background: var(--color-bg-tertiary);
+        }
+
+        .cyber-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 4px 8px color-mix(in srgb, var(--cyber-void-900) 50%, transparent);
+        }
+
+        .cyber-alert--warning {
+            margin-top: var(--space-md);
+            border-left: 4px solid var(--cyber-yellow-500);
+        }
+
+        @keyframes holo-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes cyber-glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 10px var(--cyber-magenta-500);
+            }
+            50% {
+                box-shadow: 0 0 25px var(--cyber-magenta-500), 0 0 40px color-mix(in srgb, var(--cyber-magenta-500) 50%, transparent);
+            }
+        }
+    </style>
 </head>
-<body>
+
+<body class="cyber-body cyber-noise ">
+
+<main class="cyber-container">
+
+    <!-- HEADER -->
+    <header class="cyber-hero">
+        <h1 class="cyber-title">4-D Sécure</h1>
+        <span class="cyber-badge cyber-badge--magenta cyber-badge--pulse">
+                <i class="fas fa-shield-alt"></i> Système Actif
+            </span>
+    </header>
+
+    <!-- ÉNONCÉ -->
+    <section id="enonce" class="cyber-card cyber-card--holo">
+        <div class="cyber-card__header">
+            <span class="cyber-card__icon"><i class="fas fa-file-alt"></i></span>
+            <h2 class="cyber-card__title"><strong>Énoncé</strong></h2>
+        </div>
+
+        <div class="cyber-card__content">
+            <p>
+                Notre équipe d'intervention secrète a réussi à s'infiltrer dans le territoire de la Polskavie.
+                Pour mener à bien leur opération, il leur faut pouvoir acheter un matériel spécial.
+            </p>
+            <br>
+            <p>
+                Malheureusement, l'équipe manque de fonds dans la monnaie locale. Pour régler cela,
+                vous vous êtes renseigné sur une nouvelle banque qui semble très appréciée par les
+                millionnaires locaux pour devenir riches rapidement.
+            </p>
+            <br>
+            <br>
+            <p>
+                Le site en ligne de cette banque est accessible via ce lien :
+            </p>
+
+            <a href="https://www.passetonhack.fr/a20960f4-9d66-4096-bdf3-354b2e9795e1/"
+               target="_blank"
+               class="cyber-btn cyber-btn--cyan">
+                <i class="fas fa-external-link-alt"></i> Accéder au site
+            </a>
+
+            <div class="cyber-alert cyber-alert--warning">
+                <strong>Format de la réponse :</strong><br>
+                FLAG{&lt;réponse&gt;}
+            </div>
+        </div>
+    </section>
+
+    <!-- RÉSOLUTION -->
+    <section id="resolution" class="cyber-card cyber-card--green cyber-card--interactive">
+        <div class="cyber-card__header">
+            <span class="cyber-card__icon"><i class="fas fa-terminal"></i></span>
+            <h2 class="cyber-card__title"><strong>Résolution</strong></h2>
+        </div>
+
+        <div class="cyber-card__content">
+            <p>
+                Lors d’un transfert d’argent d’un compte vers l’autre, il existe une latence
+                de plusieurs secondes durant laquelle une procédure est exécutée.
+            </p>
+
+            <div class="cyber-image-wrapper">
+                <img src="Détails transaction.png" alt="Détails transaction" class="cyber-image">
+            </div>
+
+            <p>
+                À un moment précis, la somme transférée est ajoutée au compte destinataire,
+                puis la seconde d’après elle est retirée du compte initial.
+            </p>
+
+            <div class="cyber-image-wrapper">
+                <img src="Transaction.png" alt="Transaction" class="cyber-image">
+            </div>
+
+            <p>
+                Durant cette seconde, l’argent a été dupliqué.
+                Il faut donc re-cliquer avant que le système n’enlève l’argent du compte initial,
+                ce qui permet d’exploiter la latence et de dupliquer les fonds.
+            </p>
+
+            <div class="cyber-image-wrapper">
+                <img src="image transaction dépassé.png" alt="Transaction dépassé" class="cyber-image">
+            </div>
+        </div>
+    </section>
+
+</main>
 
 </body>
 </html>
